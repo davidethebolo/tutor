@@ -11,4 +11,15 @@
     <string name="title_activity_student">StudentActivity</string>
     <string name="action_settings">Settings</string>
 
+
+    <!-- Student activity -->
+    <string name="problemsSavingStudent">It is not possible to save student.</string>
+    <string name="validationSavingStudent">Student name and school are mandatory</string>
+    <string name="studentSaved">Student saved</string>
+    <string name="firstName">First name</string>
+    <string name="lastName">Last name</string>
+    <string name="school">School</string>
+    <string name="saveStudent">Save student</string>
+
+
 </resources>
