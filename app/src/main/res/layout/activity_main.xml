@@ -23,7 +23,7 @@
             android:text="@string/lessons"
             android:id="@+id/lessonsBtn"
             android:layout_gravity="center_horizontal"
-            android:onClick="toLessons"/>
+            android:onClick="toLessons" />
 
         <Button
             android:layout_width="fill_parent"
@@ -31,7 +31,7 @@
             android:text="@string/students"
             android:id="@+id/studentsBtn"
             android:layout_gravity="center_horizontal"
-            android:onClick="toStudents"/>
+            android:onClick="toStudents" />
 
         <Button
             android:layout_width="fill_parent"
@@ -39,7 +39,7 @@
             android:text="@string/statistics"
             android:id="@+id/statisticsBtn"
             android:layout_gravity="center_horizontal"
-            android:onClick="toStatistics"/>
+            android:onClick="toStatistics" />
 
     </LinearLayout>
 

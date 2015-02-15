@@ -1,9 +1,11 @@
 package com.bolowrc.tutoringmanager.activity;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.bolowrc.tutoringmanager.R;
 
@@ -37,4 +39,12 @@ public class StudentsActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    public void newStudent(View view) {
+        Intent i = new Intent(this, StudentActivity.class);
+        startActivity(i);
+    }
+
+
 }

@@ -8,5 +8,7 @@
     <string name="students">Students</string>
     <string name="statistics">Statistics</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_student">StudentActivity</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
