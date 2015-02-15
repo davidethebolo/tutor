@@ -5,7 +5,6 @@
     <string name="home">Home</string>
     <string name="settings">Settings</string>
     <string name="lessons">Lessons</string>
-    <string name="students">Students</string>
     <string name="statistics">Statistics</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_student">StudentActivity</string>
@@ -13,6 +12,8 @@
 
 
     <!-- Student activity -->
+    <string name="student">Student</string>
+    <string name="students">Students</string>
     <string name="problemsSavingStudent">It is not possible to save student.</string>
     <string name="validationSavingStudent">Student name and school are mandatory</string>
     <string name="studentSaved">Student saved</string>
@@ -20,6 +21,7 @@
     <string name="lastName">Last name</string>
     <string name="school">School</string>
     <string name="saveStudent">Save student</string>
+    <string name="newerStudent">New student</string>
 
 
 </resources>

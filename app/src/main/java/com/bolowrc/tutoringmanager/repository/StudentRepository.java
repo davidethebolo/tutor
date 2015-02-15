@@ -45,6 +45,21 @@ public class StudentRepository {
 
     }
 
+    public boolean edit(long id, String firstName, String lastName, String school) {
+        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        try {
+            ContentValues cv = new ContentValues();
+            cv.put(STUDENT_FIRSTNAME, firstName);
+            cv.put(STUDENT_LASTNAME, lastName);
+            cv.put(STUDENT_SCHOOL, school);
+            return db.update(STUDENT_TBL, cv, ID + "=?", new String[]{Long.toString(id)}) > 0;
+        } catch (SQLiteException sqle) {
+            return false;
+        }
+
+    }
+
+
     public Cursor getStudents() {
         Cursor crs = null;
         try {
@@ -54,6 +69,15 @@ public class StudentRepository {
             return null;
         }
         return crs;
+    }
+
+    public Cursor getStudent(long id) {
+        try {
+            SQLiteDatabase db = dbhelper.getReadableDatabase();
+            return db.query(STUDENT_TBL, null, ID + "=?", new String[]{Long.toString(id)}, null, null, null, null);
+        } catch (SQLiteException sqle) {
+            return null;
+        }
     }
 
 

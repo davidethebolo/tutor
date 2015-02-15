@@ -17,6 +17,8 @@ import android.widget.TextView;
 import com.bolowrc.tutoringmanager.R;
 import com.bolowrc.tutoringmanager.repository.StudentRepository;
 
+import java.text.MessageFormat;
+
 import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.ID;
 import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.STUDENT_FIRSTNAME;
 import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.STUDENT_LASTNAME;
@@ -25,20 +27,10 @@ import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.STUDENT_SCH
 public class StudentsActivity extends ActionBarActivity {
 
 
+    public static final String EXTRA_ID = "STUDENT_ID";
     private CursorAdapter adapter;
     private ListView listview = null;
     private StudentRepository studentRepository = null;
-
-    private View.OnClickListener clickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            int position = listview.getPositionForView(v);
-            long id = adapter.getItemId(position);
-            if (studentRepository.delete(id))
-                adapter.changeCursor(studentRepository.getStudents());
-        }
-    };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,23 +45,17 @@ public class StudentsActivity extends ActionBarActivity {
         adapter = new CursorAdapter(this, crs, 0) {
             @Override
             public View newView(Context ctx, Cursor arg1, ViewGroup arg2) {
-                View v = getLayoutInflater().inflate(R.layout.listactivity_row, null);
-                return v;
+                return getLayoutInflater().inflate(R.layout.student_list_row, null);
             }
 
             @Override
             public void bindView(View v, Context arg1, Cursor crs) {
-                String firstName = crs.getString(crs.getColumnIndex(STUDENT_FIRSTNAME));
-                String lastName = crs.getString(crs.getColumnIndex(STUDENT_LASTNAME));
-                String school = crs.getString(crs.getColumnIndex(STUDENT_SCHOOL));
-                TextView txt = (TextView) v.findViewById(R.id.txt_firstName);
-                txt.setText(firstName);
-                txt = (TextView) v.findViewById(R.id.txt_lastName);
-                txt.setText(lastName);
-                txt = (TextView) v.findViewById(R.id.txt_school);
-                txt.setText(school);
-                ImageButton imgbtn = (ImageButton) v.findViewById(R.id.btn_delete);
-                imgbtn.setOnClickListener(clickListener);
+                TextView txt = (TextView) v.findViewById(R.id.studentNameTxt);
+                txt.setText(getStudentMessage(crs));
+                ImageButton editBtn = (ImageButton) v.findViewById(R.id.studentEditBtn);
+                editBtn.setOnClickListener(editListener);
+                ImageButton deleteBtn = (ImageButton) v.findViewById(R.id.studentDeleteBtn);
+                deleteBtn.setOnClickListener(deleteListener);
             }
 
             @Override
@@ -82,6 +68,13 @@ public class StudentsActivity extends ActionBarActivity {
 
         listview.setAdapter(adapter);
 
+    }
+
+    private String getStudentMessage(Cursor crs) {
+        String firstName = crs.getString(crs.getColumnIndex(STUDENT_FIRSTNAME));
+        String lastName = crs.getString(crs.getColumnIndex(STUDENT_LASTNAME));
+        String school = crs.getString(crs.getColumnIndex(STUDENT_SCHOOL));
+        return MessageFormat.format("{0}: {1} {2}, {3}", getString(R.string.student), firstName, lastName, school);
     }
 
 
@@ -103,8 +96,32 @@ public class StudentsActivity extends ActionBarActivity {
 
     public void newerStudentActivity(View view) {
         Intent i = new Intent(this, StudentActivity.class);
+        i.putExtra(EXTRA_ID, 0);
         startActivity(i);
+        finish();
     }
 
+
+    private View.OnClickListener editListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            int position = listview.getPositionForView(v);
+            long id = adapter.getItemId(position);
+            Intent i = new Intent(StudentsActivity.this, StudentActivity.class);
+            i.putExtra(EXTRA_ID, id);
+            startActivity(i);
+            finish();
+        }
+    };
+
+    private View.OnClickListener deleteListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            int position = listview.getPositionForView(v);
+            long id = adapter.getItemId(position);
+            if (studentRepository.delete(id))
+                adapter.changeCursor(studentRepository.getStudents());
+        }
+    };
 
 }
