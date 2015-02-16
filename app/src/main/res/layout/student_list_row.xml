@@ -1,6 +1,6 @@
 <RelativeLayout
-    android:layout_height="wrap_content"
-    android:layout_width="400dp"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
@@ -10,27 +10,25 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/studentNameTxt" />
+            android:id="@+id/studentNameTxt"
+            android:layout_weight="2.6" />
 
         <ImageButton
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:src="@android:drawable/ic_menu_edit"
-            android:id="@+id/studentEditBtn" />
+            android:id="@+id/studentEditBtn"
+            android:layout_weight="0.2" />
 
         <ImageButton
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:src="@android:drawable/ic_menu_delete"
-            android:id="@+id/studentDeleteBtn" />
+            android:id="@+id/studentDeleteBtn"
+            android:layout_weight="0.2" />
 
     </LinearLayout>
 

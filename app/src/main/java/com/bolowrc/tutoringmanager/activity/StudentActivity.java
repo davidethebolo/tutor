@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.bolowrc.tutoringmanager.R;
+import com.bolowrc.tutoringmanager.model.Student;
 import com.bolowrc.tutoringmanager.repository.RepositoryException;
 import com.bolowrc.tutoringmanager.repository.StudentRepository;
 
@@ -55,10 +56,8 @@ public class StudentActivity extends ActionBarActivity {
     }
 
     private void save(String firstName, String lastName, String school) throws RepositoryException {
-        if (id == 0L)
-            studentRepository.save(firstName, lastName, school);
-        else
-            studentRepository.edit(id, firstName, lastName, school);
+        Student student = new Student(id, firstName, lastName, school);
+        studentRepository.saveOrUpdate(student);
 
     }
 

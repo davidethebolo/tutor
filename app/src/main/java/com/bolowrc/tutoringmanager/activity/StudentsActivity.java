@@ -74,7 +74,7 @@ public class StudentsActivity extends ActionBarActivity {
         String firstName = crs.getString(crs.getColumnIndex(STUDENT_FIRSTNAME));
         String lastName = crs.getString(crs.getColumnIndex(STUDENT_LASTNAME));
         String school = crs.getString(crs.getColumnIndex(STUDENT_SCHOOL));
-        return MessageFormat.format("{0}: {1} {2}, {3}", getString(R.string.student), firstName, lastName, school);
+        return MessageFormat.format("{0} {1}, {2}", firstName, lastName, school);
     }
 
 
