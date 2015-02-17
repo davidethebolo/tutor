@@ -4,12 +4,9 @@
     <string name="app_name">TutoringManeger</string>
     <string name="home">Home</string>
     <string name="settings">Settings</string>
-    <string name="lessons">Lessons</string>
     <string name="statistics">Statistics</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_student">StudentActivity</string>
     <string name="action_settings">Settings</string>
-
 
     <!-- Student activity -->
     <string name="student">Student</string>
@@ -23,5 +20,10 @@
     <string name="saveStudent">Save student</string>
     <string name="newerStudent">New student</string>
 
+    <!-- Lesson activity -->
+    <string name="lesson">Lesson</string>
+    <string name="lessons">Lessons</string>
+    <string name="newerLesson">New lesson</string>
+    <string name="title_activity_lesson">LessonActivity</string>
 
 </resources>

@@ -15,9 +15,8 @@ import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.STUDENT_LAS
 import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.STUDENT_SCHOOL;
 import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.STUDENT_TBL;
 
-public class StudentRepository {
+public class StudentRepository extends Repository {
 
-    private SchemaRepository dbhelper;
 
     public StudentRepository(Context ctx) {
         dbhelper = new SchemaRepository(ctx);
@@ -25,12 +24,7 @@ public class StudentRepository {
 
 
     public boolean delete(long id) {
-        SQLiteDatabase db = dbhelper.getWritableDatabase();
-        try {
-            return (db.delete(STUDENT_TBL, ID + "=?", new String[]{Long.toString(id)}) > 0);
-        } catch (SQLiteException sqle) {
-            return false;
-        }
+        return delete(id, STUDENT_TBL);
     }
 
     public void saveOrUpdate(Student student) throws RepositoryException {
@@ -66,20 +60,11 @@ public class StudentRepository {
     }
 
     public Cursor getStudents() {
-        return executeQuery(null, null);
+        return executeQuery(STUDENT_TBL, null, null);
     }
 
     public Cursor getStudent(long id) {
-        return executeQuery(ID + "=?", new String[]{Long.toString(id)});
-    }
-
-    private Cursor executeQuery(String selection, String[] selectionArgs) {
-        try {
-            SQLiteDatabase db = dbhelper.getReadableDatabase();
-            return db.query(STUDENT_TBL, null, selection, selectionArgs, null, null, null, null);
-        } catch (SQLiteException sqle) {
-            return null;
-        }
+        return executeQuery(STUDENT_TBL, ID + "=?", new String[]{Long.toString(id)});
     }
 
 
