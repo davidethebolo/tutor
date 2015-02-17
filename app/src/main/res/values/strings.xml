@@ -24,6 +24,7 @@
     <string name="lesson">Lesson</string>
     <string name="lessons">Lessons</string>
     <string name="newerLesson">New lesson</string>
-    <string name="title_activity_lesson">LessonActivity</string>
+    <string name="saveLesson">Save lesson</string>
+    <string name="paid">Paid</string>
 
 </resources>

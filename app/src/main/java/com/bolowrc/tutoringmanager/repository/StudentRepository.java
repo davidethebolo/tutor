@@ -6,8 +6,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.util.Log;
 
 import com.bolowrc.tutoringmanager.model.Student;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.ID;
 import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.STUDENT_FIRSTNAME;
@@ -68,4 +72,29 @@ public class StudentRepository extends Repository {
     }
 
 
+    public String[] getStudentsSummary() {
+
+        List<String> studentsInfo = new ArrayList<String>();
+
+        Cursor students = getStudents();
+
+        Log.d("test", String.valueOf(students.getCount()));
+
+
+        if (students.moveToFirst()) {
+
+
+            while (!students.isAfterLast()) {
+                String firstname = students.getString(students.getColumnIndex(STUDENT_FIRSTNAME));
+                String lastname = students.getString(students.getColumnIndex(STUDENT_LASTNAME));
+                String school = students.getString(students.getColumnIndex(STUDENT_SCHOOL));
+
+                studentsInfo.add(firstname + " " + lastname + ", " + school);
+                students.moveToNext();
+            }
+        }
+        Log.d("test", String.valueOf(studentsInfo));
+        String[] array = new String[studentsInfo.size()];
+        return studentsInfo.toArray(array);
+    }
 }

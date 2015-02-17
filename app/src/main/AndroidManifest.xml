@@ -42,8 +42,7 @@
         </activity>
         <activity android:name=".activity.StudentActivity" />
         <activity
-            android:name=".activity.LessonActivity"
-            android:label="@string/title_activity_lesson" >
+            android:name=".activity.LessonActivity" >
         </activity>
     </application>
 
