@@ -6,6 +6,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.ID;
+import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.LESSON_AMOUNT;
+import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.LESSON_DATE;
+import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.LESSON_HOUR;
+import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.LESSON_PAID;
+import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.LESSON_STUDENT_ID;
+import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.LESSON_TBL;
 import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.STUDENT_FIRSTNAME;
 import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.STUDENT_LASTNAME;
 import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.STUDENT_SCHOOL;
@@ -20,16 +26,26 @@ public class SchemaRepository extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String q = "CREATE TABLE " + STUDENT_TBL +
+        String studentTable = "CREATE TABLE " + STUDENT_TBL +
                 " ( " + ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 STUDENT_FIRSTNAME + " TEXT," +
                 STUDENT_LASTNAME + " TEXT," +
                 STUDENT_SCHOOL + " TEXT)";
-        db.execSQL(q);
+        db.execSQL(studentTable);
+        String lessonTable = "CREATE TABLE " + LESSON_TBL +
+                " ( " + ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                LESSON_STUDENT_ID + " INTEGER," +
+                LESSON_DATE + " TEXT," +
+                LESSON_HOUR + " DOUBLE," +
+                LESSON_AMOUNT + " DOUBLE," +
+                LESSON_PAID + " BOOLEAN)";
+        db.execSQL(lessonTable);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
     }
 
 }

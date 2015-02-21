@@ -1,6 +1,8 @@
 package com.bolowrc.tutoringmanager.model;
 
 
+import java.text.MessageFormat;
+
 public class Student {
 
     private long id = 0L;
@@ -51,5 +53,9 @@ public class Student {
 
     public void setSchool(String school) {
         this.school = school;
+    }
+
+    public String getSummary() {
+        return MessageFormat.format("{0} {1}, {2}", firstName, lastName, school);
     }
 }

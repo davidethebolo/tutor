@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:text="@string/newerLesson"
         android:id="@+id/button"
-        android:onClick="newerLessonActivity"/>
+        android:onClick="newerLessonActivity" />
 
 
 </RelativeLayout>

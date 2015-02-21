@@ -10,6 +10,11 @@ public class Lesson {
     private double amount;
     private boolean paid;
 
+    public Lesson(long studentId, boolean paid) {
+        this.studentId = studentId;
+        this.paid = paid;
+    }
+
 
     public long getId() {
         return id;

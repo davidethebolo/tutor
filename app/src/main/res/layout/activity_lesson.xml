@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.bolowrc.tutoringmanager.activity.LessonActivity">
 
@@ -18,19 +19,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/datePicker"
-            android:calendarViewShown="false"/>
+            android:calendarViewShown="false" />
 
         <NumberPicker
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/numberPicker"
-           />
+            android:id="@+id/numberPicker" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/paid"
-            android:id="@+id/checkBox" />
+            android:id="@+id/paidCheckBox" />
 
         <Button
             android:layout_width="wrap_content"
@@ -41,9 +41,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp" />
 
-
     </LinearLayout>
-
 
 
 </RelativeLayout>

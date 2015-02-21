@@ -6,7 +6,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.util.Log;
 
 import com.bolowrc.tutoringmanager.model.Student;
 
@@ -71,30 +70,23 @@ public class StudentRepository extends Repository {
         return executeQuery(STUDENT_TBL, ID + "=?", new String[]{Long.toString(id)});
     }
 
-
-    public String[] getStudentsSummary() {
-
-        List<String> studentsInfo = new ArrayList<String>();
-
+    public List<Student> getStudentsSummary() {
+        List<Student> studentsInfo = new ArrayList<Student>();
         Cursor students = getStudents();
-
-        Log.d("test", String.valueOf(students.getCount()));
-
-
         if (students.moveToFirst()) {
-
-
             while (!students.isAfterLast()) {
-                String firstname = students.getString(students.getColumnIndex(STUDENT_FIRSTNAME));
-                String lastname = students.getString(students.getColumnIndex(STUDENT_LASTNAME));
-                String school = students.getString(students.getColumnIndex(STUDENT_SCHOOL));
-
-                studentsInfo.add(firstname + " " + lastname + ", " + school);
+                studentsInfo.add(new Student(getLongFieldValue(students, ID), getStringFieldValue(students, STUDENT_FIRSTNAME), getStringFieldValue(students, STUDENT_LASTNAME), getStringFieldValue(students, STUDENT_SCHOOL)));
                 students.moveToNext();
             }
         }
-        Log.d("test", String.valueOf(studentsInfo));
-        String[] array = new String[studentsInfo.size()];
-        return studentsInfo.toArray(array);
+        return studentsInfo;
+    }
+
+    private String getStringFieldValue(Cursor students, String field) {
+        return students.getString(students.getColumnIndex(field));
+    }
+
+    private long getLongFieldValue(Cursor students, String field) {
+        return students.getLong(students.getColumnIndex(field));
     }
 }

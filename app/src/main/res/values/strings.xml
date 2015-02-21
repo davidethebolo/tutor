@@ -26,5 +26,7 @@
     <string name="newerLesson">New lesson</string>
     <string name="saveLesson">Save lesson</string>
     <string name="paid">Paid</string>
+    <string name="problemsSavingLesson">It is not possible to save lesson.</string>
+    <string name="lessonSaved">Lesson saved</string>
 
 </resources>
