@@ -10,8 +10,11 @@ public class Lesson {
     private double amount;
     private boolean paid;
 
-    public Lesson(long studentId, boolean paid) {
+    public Lesson(long studentId, String date, double amount, double hour, boolean paid) {
         this.studentId = studentId;
+        this.date = date;
+        this.amount = amount;
+        this.hour = hour;
         this.paid = paid;
     }
 

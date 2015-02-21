@@ -7,30 +7,36 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_height="wrap_content">
 
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spinner" />
+            android:id="@+id/lessonStudentSpinner" />
 
         <DatePicker
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/datePicker"
+            android:id="@+id/lessonDatePicker"
             android:calendarViewShown="false" />
 
-        <NumberPicker
+        <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/numberPicker" />
+            android:id="@+id/lessonHourSpinner" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/lessonAmountEditText" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/paid"
-            android:id="@+id/paidCheckBox" />
+            android:id="@+id/lessonPaidCheckBox" />
 
         <Button
             android:layout_width="wrap_content"
