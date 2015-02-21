@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ripetizioni</string>
+    <string name="action_settings">Impostazioni</string>
+    <string name="firstName">Nome</string>
+    <string name="home">Home</string>
+    <string name="lastName">Cognome</string>
+    <string name="lesson">Lezione</string>
+    <string name="lessonSaved">Lezione salvata</string>
+    <string name="lessons">Lezioni</string>
+    <string name="newerLesson">Nuova lezione</string>
+    <string name="newerStudent">Nuovo studente</string>
+    <string name="paid">Pagato</string>
+    <string name="problemsSavingLesson">Non è possibile salvare la lezione</string>
+    <string name="problemsSavingStudent">Non è possibile salvare lo studente</string>
+    <string name="saveLesson">Salva lezione</string>
+    <string name="saveStudent">Salva studente</string>
+    <string name="school">Scuola</string>
+    <string name="settings">Impostazioni</string>
+    <string name="statistics">Statistiche</string>
+    <string name="student">Studente</string>
+    <string name="studentSaved">Studente salvato</string>
+    <string name="students">Studenti</string>
+    <string name="validationSavingStudent">Il nome dello studente e della scuola sono obbligatori</string>
+</resources>

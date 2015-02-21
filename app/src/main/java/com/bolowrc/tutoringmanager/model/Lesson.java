@@ -46,4 +46,13 @@ public class Lesson {
     public boolean isPaid() {
         return paid;
     }
+
+    @Override
+    public String toString() {
+        return "Lezione: studente=" + studentId +
+                ", data='" + date + '\'' +
+                ", ore=" + hour +
+                ", costo=" + amount +
+                ", ha pagato?=" + paid;
+    }
 }

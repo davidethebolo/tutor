@@ -82,11 +82,4 @@ public class StudentRepository extends Repository {
         return studentsInfo;
     }
 
-    private String getStringFieldValue(Cursor students, String field) {
-        return students.getString(students.getColumnIndex(field));
-    }
-
-    private long getLongFieldValue(Cursor students, String field) {
-        return students.getLong(students.getColumnIndex(field));
-    }
 }

@@ -1,5 +1,6 @@
 package com.bolowrc.tutoringmanager.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -69,6 +70,8 @@ private static final    String[] hour = {"0.5", "1", "1.5", "2"};
         try {
             lessonRepository.saveOrUpdate(lesson);
             makeText(getApplicationContext(), getString(R.string.lessonSaved), LENGTH_LONG).show();
+            Intent intent = new Intent(this, LessonsActivity.class);
+            startActivity(intent);
         } catch (RepositoryException e) {
             makeText(getApplicationContext(), getString(R.string.problemsSavingLesson), LENGTH_LONG).show();
         }
