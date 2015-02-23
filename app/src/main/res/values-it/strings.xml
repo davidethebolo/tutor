@@ -22,4 +22,5 @@
     <string name="studentSaved">Studente salvato</string>
     <string name="students">Studenti</string>
     <string name="validationSavingStudent">Il nome dello studente e della scuola sono obbligatori</string>
+    <string name="noStudentsAvailable">Non ci sono studenti disponibili</string>
 </resources>

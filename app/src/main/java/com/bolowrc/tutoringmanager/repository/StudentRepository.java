@@ -44,7 +44,6 @@ public class StudentRepository extends Repository {
         }
     }
 
-
     private void save(Student student) throws RepositoryException {
         SQLiteDatabase db = dbhelper.getWritableDatabase();
         try {
@@ -62,17 +61,17 @@ public class StudentRepository extends Repository {
         return cv;
     }
 
-    public Cursor getStudents() {
+    public Cursor getStudentsData() {
         return executeQuery(STUDENT_TBL, null, null);
     }
 
-    public Cursor getStudent(long id) {
+    public Cursor getStudentData(long id) {
         return executeQuery(STUDENT_TBL, ID + "=?", new String[]{Long.toString(id)});
     }
 
-    public List<Student> getStudentsSummary() {
+    public List<Student> getStudents() {
         List<Student> studentsInfo = new ArrayList<Student>();
-        Cursor students = getStudents();
+        Cursor students = getStudentsData();
         if (students.moveToFirst()) {
             while (!students.isAfterLast()) {
                 studentsInfo.add(new Student(getLongFieldValue(students, ID), getStringFieldValue(students, STUDENT_FIRSTNAME), getStringFieldValue(students, STUDENT_LASTNAME), getStringFieldValue(students, STUDENT_SCHOOL)));
@@ -80,6 +79,13 @@ public class StudentRepository extends Repository {
             }
         }
         return studentsInfo;
+    }
+
+    public Student getStudent(long id) {
+        Cursor students = getStudentData(id);
+        if (students.isAfterLast()) return null;
+        students.moveToFirst();
+        return new Student(getLongFieldValue(students, ID), getStringFieldValue(students, STUDENT_FIRSTNAME), getStringFieldValue(students, STUDENT_LASTNAME), getStringFieldValue(students, STUDENT_SCHOOL));
     }
 
 }

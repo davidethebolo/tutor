@@ -41,7 +41,7 @@ public class StudentsActivity extends ActionBarActivity {
 
 
         listview = (ListView) findViewById(R.id.listView);
-        Cursor crs = studentRepository.getStudents();
+        Cursor crs = studentRepository.getStudentsData();
         adapter = new CursorAdapter(this, crs, 0) {
             @Override
             public View newView(Context ctx, Cursor arg1, ViewGroup arg2) {
@@ -120,7 +120,7 @@ public class StudentsActivity extends ActionBarActivity {
             int position = listview.getPositionForView(v);
             long id = adapter.getItemId(position);
             if (studentRepository.delete(id))
-                adapter.changeCursor(studentRepository.getStudents());
+                adapter.changeCursor(studentRepository.getStudentsData());
         }
     };
 

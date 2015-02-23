@@ -29,18 +29,20 @@ public class Repository {
         }
     }
 
- String getStringFieldValue(Cursor cursor, String field) {
+    String getStringFieldValue(Cursor cursor, String field) {
         return cursor.getString(cursor.getColumnIndex(field));
     }
 
     long getLongFieldValue(Cursor cursor, String field) {
         return cursor.getLong(cursor.getColumnIndex(field));
     }
+
     double getDoubleFieldValue(Cursor cursor, String field) {
         return cursor.getDouble(cursor.getColumnIndex(field));
     }
+
     boolean getBooleanFieldValue(Cursor cursor, String field) {
-        return cursor.getInt(cursor.getColumnIndex(field))==1;
+        return cursor.getInt(cursor.getColumnIndex(field)) == 1;
     }
 
 

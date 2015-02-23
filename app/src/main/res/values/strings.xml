@@ -28,5 +28,7 @@
     <string name="paid">Paid</string>
     <string name="problemsSavingLesson">It is not possible to save lesson.</string>
     <string name="lessonSaved">Lesson saved</string>
+    <string name="noStudentsAvailable">There are no available students</string>
+    <string name="studentNotAvailable">Student not available</string>
 
 </resources>

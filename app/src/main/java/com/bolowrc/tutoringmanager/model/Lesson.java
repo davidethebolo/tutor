@@ -1,6 +1,8 @@
 package com.bolowrc.tutoringmanager.model;
 
 
+import com.bolowrc.tutoringmanager.util.DateUtil;
+
 public class Lesson {
 
     private long id;
@@ -35,12 +37,27 @@ public class Lesson {
         return date;
     }
 
+    public String getPrintableDate() {
+        return DateUtil.toPresentableDate(date);
+    }
+
+
     public double getHour() {
         return hour;
     }
 
+    public String getPrintableHour() {
+        return Double.toString(hour);
+
+    }
+
+
     public double getAmount() {
         return amount;
+    }
+
+    public String getPrintableAmount() {
+        return Double.toString(amount);
     }
 
     public boolean isPaid() {
@@ -55,4 +72,5 @@ public class Lesson {
                 ", costo=" + amount +
                 ", ha pagato?=" + paid;
     }
+
 }

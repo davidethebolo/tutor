@@ -17,18 +17,18 @@ import com.bolowrc.tutoringmanager.repository.LessonRepository;
 import com.bolowrc.tutoringmanager.repository.RepositoryException;
 import com.bolowrc.tutoringmanager.repository.StudentRepository;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.makeText;
+import static com.bolowrc.tutoringmanager.util.DateUtil.toDateString;
 
 
 public class LessonActivity extends ActionBarActivity {
 
-private static final    String[] hour = {"0.5", "1", "1.5", "2"};
+    private static final String[] hour = {"0.5", "1", "1.5", "2"};
 
     private LessonRepository lessonRepository = null;
     private StudentRepository studentRepository;
@@ -42,7 +42,13 @@ private static final    String[] hour = {"0.5", "1", "1.5", "2"};
         setContentView(R.layout.activity_lesson);
 
         studentRepository = new StudentRepository(this);
-        students = studentRepository.getStudentsSummary();
+        students = studentRepository.getStudents();
+        if (students.isEmpty()) {
+            makeText(getApplicationContext(), getString(R.string.noStudentsAvailable), LENGTH_LONG).show();
+            Intent intent = new Intent(this, LessonsActivity.class);
+            startActivity(intent);
+            finish();
+        }
         initStudentSpinner();
         initHourSpinner();
 
@@ -52,7 +58,8 @@ private static final    String[] hour = {"0.5", "1", "1.5", "2"};
 
     public void saveLesson(View v) {
         CheckBox paid = (CheckBox) findViewById(R.id.lessonPaidCheckBox);
-        Spinner studentSpinner = getSpinner(R.id.lessonStudentSpinner);Spinner hourSpinner = getSpinner(R.id.lessonHourSpinner);
+        Spinner studentSpinner = getSpinner(R.id.lessonStudentSpinner);
+        Spinner hourSpinner = getSpinner(R.id.lessonHourSpinner);
 
         long studentId = students.get(studentSpinner.getSelectedItemPosition()).getId();
         double hours = Double.valueOf(hour[hourSpinner.getSelectedItemPosition()]);
@@ -63,15 +70,14 @@ private static final    String[] hour = {"0.5", "1", "1.5", "2"};
         int month = datePicker.getMonth();
         int year = datePicker.getYear();
         Calendar date = new GregorianCalendar(year, month, dayOfMonth);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-
-        Lesson lesson = new Lesson(studentId,simpleDateFormat.format(date.getTime()), amount, hours, paid.isChecked());
+        Lesson lesson = new Lesson(studentId, toDateString(date), amount, hours, paid.isChecked());
         try {
             lessonRepository.saveOrUpdate(lesson);
             makeText(getApplicationContext(), getString(R.string.lessonSaved), LENGTH_LONG).show();
             Intent intent = new Intent(this, LessonsActivity.class);
             startActivity(intent);
+            finish();
         } catch (RepositoryException e) {
             makeText(getApplicationContext(), getString(R.string.problemsSavingLesson), LENGTH_LONG).show();
         }
@@ -105,13 +111,11 @@ private static final    String[] hour = {"0.5", "1", "1.5", "2"};
 
     private void initHourSpinner() {
         Spinner hourSpinner = getSpinner(R.id.lessonHourSpinner);
-         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_dropdown_item, hour);
         hourSpinner.setAdapter(adapter);
 
     }
-
-
 
 
     private Spinner getSpinner(int id) {

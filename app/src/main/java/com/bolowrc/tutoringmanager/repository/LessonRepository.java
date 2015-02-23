@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
 import com.bolowrc.tutoringmanager.model.Lesson;
-import com.bolowrc.tutoringmanager.model.Student;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +19,6 @@ import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.LESSON_HOUR
 import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.LESSON_PAID;
 import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.LESSON_STUDENT_ID;
 import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.LESSON_TBL;
-import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.STUDENT_FIRSTNAME;
-import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.STUDENT_LASTNAME;
-import static com.bolowrc.tutoringmanager.repository.DatabaseStrings.STUDENT_SCHOOL;
 
 public class LessonRepository extends Repository {
 
@@ -67,14 +63,14 @@ public class LessonRepository extends Repository {
         Cursor students = executeQuery(LESSON_TBL, null, null);
         if (students.moveToFirst()) {
             while (!students.isAfterLast()) {
-                studentsInfo.add(new Lesson(getLongFieldValue(students, LESSON_STUDENT_ID), getStringFieldValue(students, LESSON_DATE), getDoubleFieldValue(students, LESSON_AMOUNT),getDoubleFieldValue(students, LESSON_HOUR),getBooleanFieldValue(students, LESSON_PAID)));
+                studentsInfo.add(new Lesson(getLongFieldValue(students, LESSON_STUDENT_ID), getStringFieldValue(students, LESSON_DATE), getDoubleFieldValue(students, LESSON_AMOUNT), getDoubleFieldValue(students, LESSON_HOUR), getBooleanFieldValue(students, LESSON_PAID)));
                 students.moveToNext();
             }
         }
         return studentsInfo;
     }
 
-    public Cursor getLesson(long id) {
+    public Cursor getLessonData(long id) {
         return executeQuery(LESSON_TBL, ID + "=?", new String[]{Long.toString(id)});
     }
 
@@ -86,6 +82,17 @@ public class LessonRepository extends Repository {
         cv.put(LESSON_AMOUNT, lesson.getAmount());
         cv.put(LESSON_PAID, lesson.isPaid());
         return cv;
+    }
+
+    public Cursor getLessonsData() {
+        return executeQuery(LESSON_TBL, null, null);
+    }
+
+    public Lesson getLesson(long id) {
+        Cursor student = getLessonData(id);
+        if (student.isAfterLast()) return null;
+        student.moveToFirst();
+        return new Lesson(getLongFieldValue(student, LESSON_STUDENT_ID), getStringFieldValue(student, LESSON_DATE), getDoubleFieldValue(student, LESSON_AMOUNT), getDoubleFieldValue(student, LESSON_HOUR), getBooleanFieldValue(student, LESSON_PAID));
     }
 
 }

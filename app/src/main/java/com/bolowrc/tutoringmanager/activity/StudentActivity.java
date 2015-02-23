@@ -32,7 +32,7 @@ public class StudentActivity extends ActionBarActivity {
         Intent i = getIntent();
         id = i.getExtras().getLong(EXTRA_ID);
         if (id != 0L) {
-            Cursor crs = studentRepository.getStudent(id);
+            Cursor crs = studentRepository.getStudentData(id);
             crs.moveToFirst();
             editText(R.id.firstNameInput).setText(crs.getString(crs.getColumnIndex(STUDENT_FIRSTNAME)));
             editText(R.id.lastNameInput).setText(crs.getString(crs.getColumnIndex(STUDENT_LASTNAME)));
