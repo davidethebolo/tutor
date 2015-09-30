@@ -122,6 +122,5 @@ public class StudentsActivity extends ActionBarActivity {
             if (studentRepository.delete(id))
                 adapter.changeCursor(studentRepository.getStudentsData());
         }
-    };
 
 }
