@@ -6,3 +6,10 @@ android:
     - extra
 
 script: ./gradlew clean build
+
+notifications:
+  email:
+    recipients:
+      - davide.bolognini@gmail.com
+    on_success: change
+    on_failure: always
